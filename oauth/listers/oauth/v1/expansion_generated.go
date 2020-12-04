@@ -17,7 +17,3 @@ type OAuthClientListerExpansion interface{}
 // OAuthClientAuthorizationListerExpansion allows custom methods to be added to
 // OAuthClientAuthorizationLister.
 type OAuthClientAuthorizationListerExpansion interface{}
-
-// UserOAuthAccessTokenListerExpansion allows custom methods to be added to
-// UserOAuthAccessTokenLister.
-type UserOAuthAccessTokenListerExpansion interface{}
