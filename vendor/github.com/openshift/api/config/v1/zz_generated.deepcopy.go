@@ -3287,11 +3287,6 @@ func (in *RegistrySources) DeepCopyInto(out *RegistrySources) {
 		*out = make([]string, len(*in))
 		copy(*out, *in)
 	}
-	if in.ContainerRuntimeSearchRegistries != nil {
-		in, out := &in.ContainerRuntimeSearchRegistries, &out.ContainerRuntimeSearchRegistries
-		*out = make([]string, len(*in))
-		copy(*out, *in)
-	}
 	return
 }
 

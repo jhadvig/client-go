@@ -253,8 +253,6 @@ type RedirectReference struct {
 	Name string `json:"name" protobuf:"bytes,3,opt,name=name"`
 }
 
-// +genclient
-// +genclient:nonNamespaced
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
 // UserOAuthAccessToken is a virtual resource to mirror OAuthAccessTokens to
