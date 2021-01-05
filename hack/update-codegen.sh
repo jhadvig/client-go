@@ -30,6 +30,16 @@ for group in apps authorization build config console image imageregistry network
     ${verify}
 done
 
+for group in console; do
+  bash ${CODEGEN_PKG}/generate-groups.sh "client,lister,informer" \
+    github.com/openshift/client-go/${group} \
+    github.com/openshift/api \
+    "${group}:v1,v1alpha1" \
+    --go-header-file ${SCRIPT_ROOT}/hack/boilerplate.txt \
+    --plural-exceptions=DNS:DNSes,DNSList:DNSList,Endpoints:Endpoints,Features:Features,FeaturesList:FeaturesList,SecurityContextConstraints:SecurityContextConstraints \
+    ${verify}
+done
+
 for group in servicecertsigner operatorcontrolplane; do
   bash ${CODEGEN_PKG}/generate-groups.sh "client,lister,informer" \
     github.com/openshift/client-go/${group} \
