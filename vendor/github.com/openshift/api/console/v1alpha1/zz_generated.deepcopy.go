@@ -73,8 +73,10 @@ func (in *ConsolePluginProxy) DeepCopyInto(out *ConsolePluginProxy) {
 	*out = *in
 	if in.Services != nil {
 		in, out := &in.Services, &out.Services
-		*out = make([]ConsolePluginProxyService, len(*in))
-		copy(*out, *in)
+		*out = make(map[string]ConsolePluginProxyService, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
 	}
 	return
 }

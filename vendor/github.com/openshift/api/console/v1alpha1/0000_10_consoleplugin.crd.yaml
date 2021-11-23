@@ -50,9 +50,9 @@ spec:
                   type: object
                   properties:
                     services:
-                      description: "services is a list of in-cluster Services that the plugin will connect to. The Service must use HTTPS. Console backend exposes the following endpoint in order to proxy communication between the plugin and the Service: \n /api/proxy/namespace/<service-namespace>/service/<service-name>:<port-number>/<request-path>?<optional-query-parameters> \n Request example path: \n /api/proxy/namespace/helm/service/helm-charts:8443/releases?limit=10"
-                      type: array
-                      items:
+                      description: "services is a map of in-cluster Services that the plugin will connect to, where the key is the proxy alias of the service and value is a ConsolePluginProxyService object, that contains information about the proxied Servicec. The Service must use HTTPS. Console backend exposes the following endpoint in order to proxy communication between the plugin and the Service: \n /api/proxy/namespace/<plugin-name>/<proxy-alias>/<request-path>?<optional-query-parameters> \n Request example path: \n /api/proxy/acm-console-plugin/acm-proxy/releases?limit=10"
+                      type: object
+                      additionalProperties:
                         description: ConsolePluginProxyService holds information on Service to which console's backend will proxy the plugin's requests.
                         type: object
                         required:

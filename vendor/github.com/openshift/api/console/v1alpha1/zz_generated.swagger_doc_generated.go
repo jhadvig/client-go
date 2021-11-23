@@ -29,7 +29,7 @@ func (ConsolePluginList) SwaggerDoc() map[string]string {
 
 var map_ConsolePluginProxy = map[string]string{
 	"":         "ConsolePluginProxy holds information on various service types to which console's backend will proxy the plugin's requests.",
-	"services": "services is a list of in-cluster Services that the plugin will connect to. The Service must use HTTPS. Console backend exposes the following endpoint in order to proxy communication between the plugin and the Service:\n\n/api/proxy/namespace/<service-namespace>/service/<service-name>:<port-number>/<request-path>?<optional-query-parameters>\n\nRequest example path:\n\n/api/proxy/namespace/helm/service/helm-charts:8443/releases?limit=10",
+	"services": "services is a map of in-cluster Services that the plugin will connect to, where the key is the proxy alias of the service and value is a ConsolePluginProxyService object, that contains information about the proxied Servicec. The Service must use HTTPS. Console backend exposes the following endpoint in order to proxy communication between the plugin and the Service:\n\n/api/proxy/namespace/<plugin-name>/<proxy-alias>/<request-path>?<optional-query-parameters>\n\nRequest example path:\n\n/api/proxy/acm-console-plugin/acm-proxy/releases?limit=10",
 }
 
 func (ConsolePluginProxy) SwaggerDoc() map[string]string {

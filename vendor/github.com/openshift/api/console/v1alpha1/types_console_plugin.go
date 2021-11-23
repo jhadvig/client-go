@@ -43,20 +43,22 @@ type ConsolePluginSpec struct {
 // ConsolePluginProxy holds information on various service types
 // to which console's backend will proxy the plugin's requests.
 type ConsolePluginProxy struct {
-	// services is a list of in-cluster Services that the plugin
-	// will connect to. The Service must use HTTPS. Console backend
-	// exposes the following endpoint in order to proxy communication
-	// between the plugin and the Service:
+	// services is a map of in-cluster Services that the plugin
+	// will connect to, where the key is the proxy alias of the service
+	// and value is a ConsolePluginProxyService object, that contains
+	// information about the proxied Servicec.
+	// The Service must use HTTPS. Console backend exposes the following
+	// endpoint in order to proxy communication between the plugin and the Service:
 	//
-	// /api/proxy/namespace/<service-namespace>/service/<service-name>:<port-number>/<request-path>?<optional-query-parameters>
+	// /api/proxy/namespace/<plugin-name>/<proxy-alias>/<request-path>?<optional-query-parameters>
 	//
 	// Request example path:
 	//
-	// /api/proxy/namespace/helm/service/helm-charts:8443/releases?limit=10
+	// /api/proxy/acm-console-plugin/acm-proxy/releases?limit=10
 	//
 	// +kubebuilder:validation:Optional
 	// +optional
-	Services []ConsolePluginProxyService `json:"services"`
+	Services map[string]ConsolePluginProxyService `json:"services"`
 }
 
 // ConsolePluginProxyService holds information on Service to which
